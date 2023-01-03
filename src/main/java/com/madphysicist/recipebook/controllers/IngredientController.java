@@ -15,7 +15,7 @@ public class IngredientController {
     }
 
     @GetMapping("/{id}")
-    public Ingredient getIngredient(int id) {
+    public Ingredient getIngredient(@PathVariable int id) {
         return ingredientService.get(id);
     }
 

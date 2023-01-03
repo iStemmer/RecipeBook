@@ -36,4 +36,26 @@ public class RecipeServiceImpl implements RecipeService {
             return recipeMap.get(id);
         }
     }
+
+    @Override
+    public void change(int id, Recipe recipe) {
+        if (!recipeMap.containsKey(id)) {
+            throw new RuntimeException("Changeable recipe has not found. Check ID");
+        }
+        recipeMap.put(id, recipe);
+    }
+
+    @Override
+    public void delete(int id) {
+        if (!recipeMap.containsKey(id)) {
+            throw new RuntimeException("Deletable recipe has not found. Check ID");
+        }
+        recipeMap.remove(id);
+    }
+
+
+    @Override
+    public Map<Integer, Recipe> getAll() {
+        return recipeMap;
+    }
 }

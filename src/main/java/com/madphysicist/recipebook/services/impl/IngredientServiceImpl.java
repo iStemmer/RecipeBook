@@ -35,4 +35,25 @@ public class IngredientServiceImpl implements IngredientService {
             return ingredientMap.get(id);
         }
     }
+
+    @Override
+    public void change(int id, Ingredient ingredient) {
+        if (!ingredientMap.containsKey(id)) {
+            throw new RuntimeException("Changeable ingredient has not found. Check ID");
+        }
+        ingredientMap.put(id, ingredient);
+    }
+
+    @Override
+    public void delete(int id) {
+        if (!ingredientMap.containsKey(id)) {
+            throw new RuntimeException("Deletable ingredient has not found. Check ID");
+        }
+        ingredientMap.remove(id);
+    }
+
+    @Override
+    public Map<Integer, Ingredient> getAll() {
+        return  ingredientMap;
+    }
 }

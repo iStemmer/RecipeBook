@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,5 +16,5 @@ public class Recipe {
     @NonNull
     private List<Ingredient> ingredients;
     @NonNull
-    private ArrayList<String> steps;
+    private List<String> steps;
 }

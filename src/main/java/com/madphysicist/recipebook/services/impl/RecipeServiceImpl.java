@@ -1,5 +1,6 @@
 package com.madphysicist.recipebook.services.impl;
 
+import com.madphysicist.recipebook.exception.*;
 import com.madphysicist.recipebook.model.Recipe;
 import com.madphysicist.recipebook.services.RecipeService;
 import org.springframework.stereotype.Service;
@@ -11,48 +12,47 @@ import java.util.Map;
 public class RecipeServiceImpl implements RecipeService {
 
     private static final Map<Integer, Recipe> recipeMap = new HashMap<>();
-    private static int count = 0;
+    private static int LastId = 0;
 
     @Override
-    public void add(Recipe recipe) {
-        if (count == 0) {
-            count++;
-            recipeMap.put(count, recipe);
-            return;
+    public int add(Recipe recipe) {
+        if (LastId == 0) {
+            recipeMap.put(LastId, recipe);
+            return LastId++;
         }
         if (recipeMap.containsValue(recipe)) {
-            throw new RuntimeException("this recipe has already been added");
-        } else {
-            count++;
-            recipeMap.put(count, recipe);
+            throw new RecipeAddException();
         }
+        recipeMap.put(LastId, recipe);
+        return LastId++;
     }
 
     @Override
     public Recipe get(int id) {
         if (!recipeMap.containsKey(id)) {
-            throw new RuntimeException("The recipe has not found. Check ID");
+            throw new RecipeGetException();
         } else {
             return recipeMap.get(id);
         }
     }
 
     @Override
-    public void change(int id, Recipe recipe) {
+    public int change(int id, Recipe recipe) {
         if (!recipeMap.containsKey(id)) {
-            throw new RuntimeException("Changeable recipe has not found. Check ID");
+            throw new RecipeChangeException();
         }
         recipeMap.put(id, recipe);
+        return id;
     }
 
     @Override
-    public void delete(int id) {
+    public int delete(int id) {
         if (!recipeMap.containsKey(id)) {
-            throw new RuntimeException("Deletable recipe has not found. Check ID");
+            throw new RecipeDeleteException();
         }
         recipeMap.remove(id);
+        return id;
     }
-
 
     @Override
     public Map<Integer, Recipe> getAll() {

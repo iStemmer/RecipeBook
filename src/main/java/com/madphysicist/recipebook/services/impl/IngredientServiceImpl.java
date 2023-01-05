@@ -1,5 +1,6 @@
 package com.madphysicist.recipebook.services.impl;
 
+import com.madphysicist.recipebook.exception.*;
 import com.madphysicist.recipebook.model.Ingredient;
 import com.madphysicist.recipebook.services.IngredientService;
 import org.springframework.stereotype.Service;
@@ -10,50 +11,50 @@ import java.util.Map;
 @Service
 public class IngredientServiceImpl implements IngredientService {
     private static final Map<Integer, Ingredient> ingredientMap = new HashMap<>();
-    private static int count = 0;
+    private static int lastId = 0;
 
     @Override
-    public void add(Ingredient ingredient) {
-        if (count == 0) {
-            count++;
-            ingredientMap.put(count, ingredient);
-            return;
+    public int add(Ingredient ingredient) {
+        if (lastId == 0) {
+            ingredientMap.put(lastId, ingredient);
+            return lastId++;
         }
         if (ingredientMap.containsValue(ingredient)) {
-            throw new RuntimeException("this ingredient has already been added");
-        } else {
-            count++;
-            ingredientMap.put(count, ingredient);
+            throw new IngredientAddException();
         }
+        ingredientMap.put(lastId, ingredient);
+        return lastId++;
     }
 
     @Override
     public Ingredient get(int id) {
         if (!ingredientMap.containsKey(id)) {
-            throw new RuntimeException("The ingredient has not found. Check ID");
+            throw new IngredientGetException();
         } else {
             return ingredientMap.get(id);
         }
     }
 
     @Override
-    public void change(int id, Ingredient ingredient) {
+    public int change(int id, Ingredient ingredient) {
         if (!ingredientMap.containsKey(id)) {
-            throw new RuntimeException("Changeable ingredient has not found. Check ID");
+            throw new IngredientChangeException();
         }
         ingredientMap.put(id, ingredient);
+        return id;
     }
 
     @Override
-    public void delete(int id) {
+    public int delete(int id) {
         if (!ingredientMap.containsKey(id)) {
-            throw new RuntimeException("Deletable ingredient has not found. Check ID");
+            throw new IngredientDeleteException();
         }
         ingredientMap.remove(id);
+        return id;
     }
 
     @Override
     public Map<Integer, Ingredient> getAll() {
-        return  ingredientMap;
+        return ingredientMap;
     }
 }

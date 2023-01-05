@@ -2,7 +2,6 @@ package com.madphysicist.recipebook.model;
 
 import lombok.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe {
@@ -13,9 +12,9 @@ public class Recipe {
     @NonNull
     private List<Ingredient> ingredients;
     @NonNull
-    private ArrayList<String> steps;
+    private List<String> steps;
 
-    public Recipe(String name, int preparingTime, List<Ingredient> ingredients, ArrayList<String> steps) {
+    public Recipe(String name, int preparingTime, List<Ingredient> ingredients, List<String> steps) {
         this.name = name;
         this.preparingTime = preparingTime;
         this.ingredients = ingredients;
@@ -50,7 +49,7 @@ public class Recipe {
         return steps;
     }
 
-    public void setSteps(ArrayList<String> steps) {
+    public void setSteps(List<String> steps) {
         this.steps = steps;
     }
 

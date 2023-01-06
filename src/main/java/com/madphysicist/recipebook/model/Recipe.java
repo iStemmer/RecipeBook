@@ -1,9 +1,13 @@
 package com.madphysicist.recipebook.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NonNull;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
 public class Recipe {
     @NonNull
     private String name;
@@ -13,63 +17,4 @@ public class Recipe {
     private List<Ingredient> ingredients;
     @NonNull
     private List<String> steps;
-
-    public Recipe(String name, int preparingTime, List<Ingredient> ingredients, List<String> steps) {
-        this.name = name;
-        this.preparingTime = preparingTime;
-        this.ingredients = ingredients;
-        this.steps = steps;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPreparingTime() {
-        return preparingTime;
-    }
-
-    public void setPreparingTime(int preparingTime) {
-        this.preparingTime = preparingTime;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public List<String> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(List<String> steps) {
-        this.steps = steps;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Recipe recipe)) return false;
-
-        if (preparingTime != recipe.preparingTime) return false;
-        if (!name.equals(recipe.name)) return false;
-        if (!ingredients.equals(recipe.ingredients)) return false;
-        return steps.equals(recipe.steps);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + preparingTime;
-        result = 31 * result + ingredients.hashCode();
-        result = 31 * result + steps.hashCode();
-        return result;
-    }
 }

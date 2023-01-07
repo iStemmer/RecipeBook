@@ -4,6 +4,7 @@ import com.madphysicist.recipebook.services.FilesService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,7 +38,13 @@ public class FilesServiceImpl implements FilesService {
         }
     }
 
-    private boolean cleanDataFile(String fileName) {
+    @Override
+    public File getDataFile(String fileName) {
+        return new File(filesPath + "/" + fileName);
+    }
+
+    @Override
+    public boolean cleanDataFile(String fileName) {
         try {
             Path path = Path.of(filesPath, fileName);
             Files.deleteIfExists(path);

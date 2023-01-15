@@ -34,7 +34,7 @@ public class FilesServiceImpl implements FilesService {
             return Files.readString(path);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            return null;
         }
     }
 

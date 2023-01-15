@@ -17,8 +17,8 @@ public class IngredientController {
 
     private final IngredientService ingredientService;
 
-    public IngredientController(IngredientService recipeService) {
-        this.ingredientService = recipeService;
+    public IngredientController(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
     }
 
     @GetMapping("/{id}")

@@ -28,10 +28,10 @@ public class RecipeServiceImpl implements RecipeService {
         this.filesService = filesService;
     }
 
-    @PostConstruct
-    private void init() {
-        readFromFile();
-    }
+//    @PostConstruct
+//    private void init() {
+//        readFromFile();
+//    }
 
     @Override
     public int add(Recipe recipe) {

@@ -28,10 +28,10 @@ public class IngredientServiceImpl implements IngredientService {
         this.filesService = filesService;
     }
 
-    @PostConstruct
-    private void init() {
-        readFromFile();
-    }
+//    @PostConstruct
+//    private void init() {
+//        readFromFile();
+//    }
 
     @Override
     public int add(Ingredient ingredient) {

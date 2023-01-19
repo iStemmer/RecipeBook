@@ -17,9 +17,9 @@ public class FirstController {
     @GetMapping("/info")
     @Operation(description = "Информация о приложении")
     public String appInfo() {
-        return "Author name: " + "Oleg Kartashev" + "<br>" +
+        return "Author name: " + "Имя фамилия" + "<br>" +
                 "Project name: RecipeBook" + "<br>" +
-                "Creation date: 11/12/2022" + "<br>" +
+                "Creation date: 20/01/2023" + "<br>" +
                 "Project description: My first spring project";
     }
 }
